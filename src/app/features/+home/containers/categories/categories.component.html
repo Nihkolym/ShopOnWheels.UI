@@ -1,0 +1,5 @@
+<div class="categories">
+  <a [routerLink]="['/home/categories/' + category.id]" [queryParams]="{category: category.name}" *ngFor="let category of categories" class="category">
+    {{category.name.toUpperCase()}}
+  </a>
+</div>

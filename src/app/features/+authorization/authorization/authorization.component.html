@@ -1,0 +1,21 @@
+<form [formGroup]="authForm" (submit)="onSubmit()" class="auth-container">
+    <mat-form-field>
+        <input [formControlName]="'email'" matInput placeholder="Email">
+      </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" [formControlName]="'password'" matInput placeholder="Password">
+    </mat-form-field>
+
+    <div class="errors">
+      <mat-error *ngIf="authForm.errors && authForm.errors['userConflict']">This User already exist</mat-error>
+      <mat-error *ngIf="authForm.errors && authForm.errors['invalidData']">Data is incorrect</mat-error>
+      <mat-error *ngIf="authForm.errors && authForm.errors['emptyFields']">Fields are required</mat-error>
+    </div>
+
+    <div class="btns-container">
+        <button type="submit" style="margin-right: 25px" mat-raised-button color="warn">{{ authType == Auth.Log ? 'Login' : 'Sign Up' }}</button>
+        <button type="button" (click)="close()" mat-raised-button color="primary">Close</button>
+    </div>
+
+</form>

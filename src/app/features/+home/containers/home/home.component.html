@@ -1,0 +1,45 @@
+
+<mat-sidenav-container
+class="example-container" (backdropClick)="sidenav.close()">
+<mat-sidenav #sidenav (keydown.escape)="sidenav.close()" disableClose>
+  <form (submit)="onSubmit()" class="form" [formGroup]="productSearchForm">
+      <mat-form-field class="example-full-width">
+        <input [formControlName]="'name'" matInput  placeholder="Name">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input [formControlName]="'manufacturer'" matInput  placeholder="Manufacturer">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select [formControlName]="'categoryId'">
+          <mat-option [value]="null">
+            None
+          </mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{category.name.toUpperCase()}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input [formControlName]="'from'" matInput placeholder="From" type="number" class="example-right-align">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+      <mat-form-field>
+        <input [formControlName]="'to'" matInput placeholder="To" type="number" class="example-right-align">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+
+      <button mat-raised-button color="warn">Search</button>
+  </form>
+</mat-sidenav>
+
+<mat-sidenav-content
+style="width: 100%">
+<p class="filter"><button mat-button (click)="sidenav.open()"><i class="material-icons">
+  filter_list
+  </i></button></p>
+  <router-outlet></router-outlet>
+</mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,27 @@
+.categories{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 50px;
+
+  .category{
+    display: flex;
+    font-size: 36px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    width: calc(25% - 50px);
+    height: 200px;
+    margin: 25px;
+    border-radius: 20px;
+    background: #ffc243;
+    &:hover{
+      cursor: pointer;
+      border: 5px solid black;
+    }
+  }
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}

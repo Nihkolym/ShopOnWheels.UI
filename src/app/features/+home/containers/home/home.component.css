@@ -1,0 +1,43 @@
+.example-container {
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  background: none;
+  left: 0;
+  right: 0;
+}
+
+mat-sidenav-content{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+mat-sidenav{
+  width: 400px;
+  background: #ffc243;
+}
+
+.filter{
+  position: absolute;
+  right: 0;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}

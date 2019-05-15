@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>
+    {{categoryName.toUpperCase()}}
+  </h1>
+  <div class="products">
+
+    <div *ngFor="let product of products.slice(from, to)" [style.background]="cartService.hasProduct(product.id) ? '#008000' : false" class="product">
+      <h2>{{product.name.toUpperCase()}}</h2>
+      <h3>{{product.weight + (product.isCountable ? 'ml' : 'g')}}</h3>
+      <img width="200" height="200" [src]="iconPath(product.image)" alt="icon">
+      <div>${{product.price}}</div>
+
+      <button (click)="cartService.addToCart(product)" mat-raised-button color='warn'>Add to cart</button>
+
+    </div>
+
+
+  </div>
+  <div *ngIf="products.length > seek" class="btns-container">
+      <button [disabled]="from === 0" (click)="left()" mat-raised-button color="warn"><i class="material-icons">
+          arrow_left_alt
+          </i></button>
+      <button [disabled]="to >= products.length" (click)="right()" mat-raised-button color="warn"><i class="material-icons">
+          arrow_right_alt
+          </i></button>
+  </div>
+
+</div>
+

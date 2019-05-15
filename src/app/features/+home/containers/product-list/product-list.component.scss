@@ -1,0 +1,30 @@
+.container{
+  padding: 25px 75px;
+  .products{
+    display: flex;
+    .product{
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      background: #ffc243;
+      border-radius: 20px;
+      width: calc(25% - 50px);
+      height: 400px;
+      margin: 25px;
+    }
+  }
+
+  .btns-container{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    button{
+      width: 100px;
+    }
+  }
+}
+
+
