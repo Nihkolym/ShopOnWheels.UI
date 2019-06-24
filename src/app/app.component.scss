@@ -31,3 +31,21 @@
   border: 3px solid black;
   border-radius: 50%;
 }
+
+::ng-deep.menu{
+  background: #ffc243 !important;
+}
+
+.lang-container{
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.menu-btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

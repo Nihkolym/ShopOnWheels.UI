@@ -13,4 +13,12 @@ export class OrderService {
     public createOrder(order: IOrder): Observable<IOrder> {
       return this.http.post<IOrder>(`${AppSettings.apiHost}/Order`, order);
     }
+
+    public getOrders(): Observable<IOrder[]> {
+      return this.http.get<IOrder[]>(`${AppSettings.apiHost}/Order`);
+    }
+
+    public update(order: IOrder): Observable<IOrder> {
+      return this.http.put<IOrder>(`${AppSettings.apiHost}/Order/${order.id}`, order);
+    }
 }

@@ -24,4 +24,12 @@ export class StorageService {
     public clearCredentials(): void {
         localStorage.clear();
     }
+
+    public set local(value: string) {
+      localStorage.setItem('local', value);
+    }
+
+    public get local(): string {
+      return localStorage.getItem('local');
+    }
 }

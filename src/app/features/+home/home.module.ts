@@ -1,3 +1,4 @@
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CategoryService } from './services/category.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,23 +14,41 @@ import { HomeComponent } from './containers/home/home.component';
 import { CartService } from './services/cart.service';
 import { CartComponent } from './containers/cart/cart.component';
 import { OrderService } from './services/order.service';
+import { OrdersComponent } from './containers/orders/orders.component';
+import { SubscribeComponent } from './components/subscribe/subscribe.component';
+import { BoxesComponent } from './components/boxes/boxes.component';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    }),
     SharedModule,
     FormsModule,
     RouterModule,
+    TranslateModule,
     ReactiveFormsModule,
-    HomeRoutingModule,
+    HomeRoutingModule
   ],
   declarations: [
     CategoriesComponent,
     ProductListComponent,
     HomeComponent,
-    CartComponent
+    CartComponent,
+    OrdersComponent,
+    SubscribeComponent,
+    BoxesComponent
   ],
   entryComponents: [
+    SubscribeComponent,
+    BoxesComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -7,6 +7,6 @@ export interface IOrder {
   orderDeliver?: string;
   frequency?: number;
   total?: number;
-  isActive?: true;
+  isActive?: boolean;
   products?: IProduct[];
 }

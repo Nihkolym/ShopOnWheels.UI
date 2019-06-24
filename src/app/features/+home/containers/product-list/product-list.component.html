@@ -6,11 +6,11 @@
 
     <div *ngFor="let product of products.slice(from, to)" [style.background]="cartService.hasProduct(product.id) ? '#008000' : false" class="product">
       <h2>{{product.name.toUpperCase()}}</h2>
-      <h3>{{product.weight + (product.isCountable ? 'ml' : 'g')}}</h3>
+      <h3>{{(product.isCountable ? product.weight : 1000) + 'g'}}</h3>
       <img width="200" height="200" [src]="iconPath(product.image)" alt="icon">
       <div>${{product.price}}</div>
 
-      <button (click)="cartService.addToCart(product)" mat-raised-button color='warn'>Add to cart</button>
+      <button (click)="cartService.addToCart(product)" mat-raised-button color='warn'>{{'Add_to_cart' | translate}}</button>
 
     </div>
 

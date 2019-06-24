@@ -1,0 +1,19 @@
+<form class="form" [formGroup]="orderForm" (submit)="submit()">
+    <mat-form-field>
+      <input min="0" type="number" [formControlName]="'frequency'" matInput placeholder="Frequency">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input [formControlName]="'orderDeliver'" matInput [matDatepicker]="picker" placeholder="Delivery Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-error *ngIf="orderForm.errors && orderForm.get('orderDeliver').errors">{{'Fill_Delivery_Date' | translate}}</mat-error>
+
+      <div class="btn-container">
+          <button type="button" mat-raised-button color="warn" (click)="dialogRef.close()">{{'Cancel' | translate}}</button>
+          <button mat-raised-button color="warn">{{'Submit' | translate}}</button>
+      </div>
+
+</form>
+

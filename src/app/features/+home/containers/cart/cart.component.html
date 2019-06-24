@@ -6,15 +6,15 @@
         <div class="info">
           <div class="section">
               <h2>{{product[0].name.toUpperCase()}}</h2>
-              <h3>{{product[0].weight + (product[0].isCountable ? 'ml' : 'g')}}</h3>
+              <h3>{{(product[0].isCountable ? product[0].weight : 1000) + 'g'}}</h3>
           </div>
             <div class="section">
-              <h2>Price</h2>
+              <h2>{{'Price' | translate}}</h2>
                <h3>${{product[0].price}}</h3>
             </div>
              <div class="section">
 
-              <h2>Quantity</h2>
+              <h2>{{'Quantity' | translate}}</h2>
               <h3 class="quantity">
                 <button (click)="remove(product[0])"  class="btn">-</button>
                 <span>{{product.length}}</span>
@@ -23,7 +23,7 @@
             </div>
 
             <div class="section">
-                <h2>Total</h2>
+                <h2>{{'Total' | translate}}</h2>
               <h3>${{product[0].price * product.length}}</h3>
               </div>
 
@@ -39,24 +39,25 @@
     </div>
 
     <div *ngIf="products.length" class="payment">
-      <h1>Summary</h1>
-      <h2><span>Total:</span> <span>${{ totalSum }}</span></h2>
+      <h1>{{'Summary' | translate}}</h1>
+      <h2><span>{{'Total' | translate}}:</span> <span>${{ totalSum.toFixed(2) }}</span></h2>
       <form class="form" [formGroup]="orderForm" (submit)="send()">
           <mat-form-field>
-            <input min="0" type="number" [formControlName]="'frequency'" matInput placeholder="Frequency">
+            <input min="0" type="number" [formControlName]="'frequency'" matInput [placeholder]="'Frequency' | translate">
           </mat-form-field>
 
           <mat-form-field>
-              <input [formControlName]="'orderDeliver'" matInput [matDatepicker]="picker" placeholder="Delivery Date">
+              <input [formControlName]="'orderDeliver'" matInput [matDatepicker]="picker" [placeholder]="'Delivery_Date' | translate">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+            <mat-error *ngIf="orderForm.errors && orderForm.get('orderDeliver').errors">{{'Fill_Delivery_Date' | translate}}</mat-error>
 
-          <button style="margin-top: 30px;" mat-raised-button color="warn">Proceed: </button>
+          <button style="position: absolute; bottom: 20px" mat-raised-button color="warn">{{'Proceed' | translate}}: </button>
       </form>
     </div>
 
 </div>
 <div class="empty" *ngIf="!products.length">
-    <h1>There are no products in cart.</h1>
+    <h1>{{'No_product' | translate}}.</h1>
   </div>

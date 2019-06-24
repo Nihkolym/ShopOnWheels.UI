@@ -3,7 +3,7 @@ import { IProduct } from './../../models/product.interface';
 import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { AppSettings } from 'src/app/core/settings';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +14,7 @@ export class CartComponent implements OnInit {
 
   public orderForm: FormGroup = new FormGroup({
     frequency: new FormControl(''),
-    orderDeliver: new FormControl(''),
+    orderDeliver: new FormControl('', [Validators.required]),
   });
 
   public products: IProduct[][] = [];
@@ -55,14 +55,19 @@ export class CartComponent implements OnInit {
   }
 
   public send() {
-    this.orderService.createOrder({
-      total: this.totalSum,
-      ...this.orderForm.value,
-      orderDate: new Date(Date.now()),
-      products: this.products.reduce((product, acc) => [...acc, ...product])
-    }).subscribe(() => {
-      this.cartService.clearCart();
-      this.products = this.cartService.getProductsFromCart();
-    });
+    if (this.orderForm.valid) {
+      this.orderService.createOrder({
+        total: this.totalSum,
+        ...this.orderForm.value,
+        orderDate: new Date(Date.now()),
+        products: this.products.reduce((product, acc) => [...acc, ...product])
+      }).subscribe(() => {
+        this.cartService.clearCart();
+        this.products = this.cartService.getProductsFromCart();
+      });
+    } else {
+      this.orderForm.setErrors({ 'invalid': true });
+    }
+
   }
 }

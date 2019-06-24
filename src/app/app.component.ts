@@ -4,6 +4,8 @@ import { IAuthResponse } from './core/auth/models/auth-response.interface';
 import { AuthService } from './core/auth/services/auth.service';
 import { Auth } from './core/models/auth.enum';
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { StorageService } from './core/auth/services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,20 @@ export class AppComponent {
     return this.cartService.isCartEmpty();
   }
 
-  constructor(private authService: AuthService, private router: Router, public cartService: CartService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    public cartService: CartService,
+    private translate: TranslateService,
+    private settings: StorageService,
+  ) {
+    translate.setDefaultLang(this.settings.local || 'en');
+  }
+
+  public changeLoc(loc: string){
+    this.settings.local = loc;
+    this.translate.use(loc);
+  }
 
   public openAuthDialog(authType: Auth) {
     this.authService.openAuthDialog(authType).subscribe(() => {
@@ -29,6 +44,10 @@ export class AppComponent {
 
   public openHome() {
     this.router.navigate(['home', 'categories']);
+  }
+
+  public openOrdersScreen() {
+    this.router.navigate(['orders']);
   }
 
   public logout(){

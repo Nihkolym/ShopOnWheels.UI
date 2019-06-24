@@ -1,3 +1,4 @@
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HomeModule } from './features/+home/home.module';
 import { CoreModule } from './core/core.module';
 import { HttpGuard } from './core/guards/http.guard';
@@ -10,15 +11,23 @@ import { SharedModule } from './shared/shared.module';
 import { ErrorStateMatcher } from '@angular/material';
 import { FormErrorStateMatcher } from './shared/forms/error-matcher';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     CommonModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    }),
     BrowserAnimationsModule,
     BrowserModule,
     RouterModule,
@@ -34,3 +43,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

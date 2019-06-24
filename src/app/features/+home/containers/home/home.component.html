@@ -4,16 +4,16 @@ class="example-container" (backdropClick)="sidenav.close()">
 <mat-sidenav #sidenav (keydown.escape)="sidenav.close()" disableClose>
   <form (submit)="onSubmit()" class="form" [formGroup]="productSearchForm">
       <mat-form-field class="example-full-width">
-        <input [formControlName]="'name'" matInput  placeholder="Name">
+        <input [formControlName]="'name'" matInput  [placeholder]="'Name' | translate">
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input [formControlName]="'manufacturer'" matInput  placeholder="Manufacturer">
+        <input [formControlName]="'manufacturer'" matInput  [placeholder]="'Manufacturer' | translate">
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Category</mat-label>
+        <mat-label>{{'Category' | translate}}</mat-label>
         <mat-select [formControlName]="'categoryId'">
           <mat-option [value]="null">
-            None
+            {{'None' | translate}}
           </mat-option>
           <mat-option *ngFor="let category of categories" [value]="category.id">
             {{category.name.toUpperCase()}}
@@ -21,17 +21,21 @@ class="example-container" (backdropClick)="sidenav.close()">
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <input [formControlName]="'from'" matInput placeholder="From" type="number" class="example-right-align">
+        <input [formControlName]="'from'" matInput [placeholder]="'From' | translate" type="number" class="example-right-align">
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
       <mat-form-field>
-        <input [formControlName]="'to'" matInput placeholder="To" type="number" class="example-right-align">
+        <input [formControlName]="'to'" matInput [placeholder]="'To' | translate" type="number" class="example-right-align">
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
 
-      <button mat-raised-button color="warn">Search</button>
+      <div style="display: flex; justify-content: space-around; width: 200px ;">
+
+        <button mat-raised-button color="warn">{{'Search' | translate}}</button>
+        <button type="button" (click)="reset()" mat-raised-button color="warn">{{'clear_btn' | translate}}</button>
+      </div>
   </form>
 </mat-sidenav>
 

@@ -4,6 +4,7 @@ import { HttpGuard } from './../../../core/guards/http.guard';
 import { CategoriesComponent } from './../containers/categories/categories.component';
 import { Route } from '@angular/router';
 import { HomeComponent } from '../containers/home/home.component';
+import { OrdersComponent } from '../containers/orders/orders.component';
 
 export const routes: Route[] = [
     {
@@ -20,6 +21,10 @@ export const routes: Route[] = [
           }
         ],
         canActivate: [HttpGuard]
+    },
+    {
+      path: 'orders',
+      component: OrdersComponent,
     },
     {
       path: 'cart',

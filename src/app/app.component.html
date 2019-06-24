@@ -3,19 +3,28 @@
     <img width="100" height="100" (click)="openHome()" src="../assets/logo.jpg" alt="logo">
     <div class="info">
       <h1>Shop On Wheels</h1>
-      <p>food delivery service</p>
+      <p>{{'food_delivery_service' | translate}}</p>
     </div>
   </div>
   <div class="btns-container">
-    <button *ngIf="!authService.isAuthorized" (click)="openAuthDialog(Auth.Log)" mat-button color="warn">Login</button>
-    <button *ngIf="!authService.isAuthorized" (click)="openAuthDialog(Auth.Sign)" mat-button color="warn">Sign up</button>
+    <div class="lang-container">
+      <button (click)="changeLoc('en')" mat-button color="warn">{{'Eng' | translate}}</button>
+      <button (click)="changeLoc('uk')" mat-button color="warn">{{'Ukr' | translate}}</button>
+    </div>
+    <button *ngIf="!authService.isAuthorized" (click)="openAuthDialog(Auth.Log)" mat-button color="warn">{{'Login' | translate}}</button>
+    <button *ngIf="!authService.isAuthorized" (click)="openAuthDialog(Auth.Sign)" mat-button color="warn">{{'Sign_up' | translate}}</button>
     <button *ngIf="authService.isAuthorized" [matMenuTriggerFor]="menu" style="margin-right: 5px; " mat-button>
         <i style="font-size: 56px;" class="material-icons">
             accessibility_new
         </i>
       </button>
-      <mat-menu #menu="matMenu">
-          <button (click)="logout()" mat-menu-item>Logout</button>
+      <mat-menu class="menu" #menu="matMenu">
+          <button class="menu-btn" (click)="openOrdersScreen()" mat-menu-item><span>{{'Orders' | translate}}</span> <i class="material-icons">
+                inbox
+                </i>  </button>
+          <button class="menu-btn" (click)="logout()" mat-menu-item><span>{{'Logout' | translate}}</span> <i class="material-icons">
+              exit_to_app
+              </i></button>
         </mat-menu>
     <button (click)="openCart()" *ngIf="authService.isAuthorized" mat-button>
       <i style="font-size: 56px;" class="material-icons">

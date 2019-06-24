@@ -1,0 +1,9 @@
+<mat-list>
+    <h3 mat-subheader>{{'Boxes' | translate}}</h3>
+    <mat-list-item *ngFor="let box of boxes">
+      <mat-icon mat-list-icon>inbox</mat-icon>
+      <h4 mat-line>ID: {{box.id}}</h4>
+      <p mat-line>{{'Current_weight' | translate}}: {{box.weight}} </p>
+      <p mat-line>{{'Product' | translate}}: {{box.product.name}} </p>
+    </mat-list-item>
+  </mat-list>

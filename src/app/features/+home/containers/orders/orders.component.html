@@ -1,0 +1,25 @@
+<div class="container">
+    <mat-card *ngFor="let order of orders" class="example-card">
+      <mat-card-header>
+        <img mat-card-avatar [src]="getLogo(order)" alt="">
+        <mat-card-title>{{ order.orderDate | date: 'dd/MM/yyyy' }}</mat-card-title>
+        <mat-card-subtitle>{{ "$" + order.total.toString() }}</mat-card-subtitle>
+      </mat-card-header>
+      <div class="image-container">
+        <img class="product-image" [width]="100" [height]="100" *ngFor="let product of order.products | slice : 0 : 6" [src]="iconPath(product.image)" alt="">
+      </div>
+      <mat-card-content>
+          <div *ngIf="order.frequency">
+              <p>{{'Frequency' | translate}}: {{ order.frequency }}</p>
+              <p>{{'Active' | translate}}: {{ (order.isActive ? 'yes' : 'no') | translate }}</p>
+          </div>
+
+          <p>{{'Order_Date' | translate}}: {{ order.orderDate | date: 'dd/MM/yyyy' }}</p>
+          <p>{{'Order_Delivery' | translate}}: {{ order.orderDeliver | date: 'dd/MM/yyyy' }}</p>
+          <button (click)="subscribe(order)" *ngIf="!order.isActive" class="product-btn" mat-raised-button color="primary">{{'Subscribe' | translate}}</button>
+          <button (click)="showBoxes(order)" *ngIf="order.isActive" class="box-btn" mat-raised-button color="primary">{{'Boxes' | translate}}</button>
+          <button (click)="unsubscribe(order)" *ngIf="order.isActive" class="product-btn" mat-raised-button color="primary">{{'Unsubscribe' | translate}}</button>
+      </mat-card-content>
+    </mat-card>
+</div>
+

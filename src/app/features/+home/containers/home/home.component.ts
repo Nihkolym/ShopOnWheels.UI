@@ -32,6 +32,11 @@ export class HomeComponent implements OnInit {
     this.categoryService.getAll().subscribe(c => this.categories = c);
   }
 
+  public reset() {
+    this.productSearchForm.reset();
+    this.onSubmit();
+  }
+
   public onSubmit() {
     let c = this.productSearchForm.get('categoryId').value;
 

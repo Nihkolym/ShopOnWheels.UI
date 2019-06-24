@@ -1,0 +1,55 @@
+.example-card {
+  max-width: 400px;
+  max-height: 394px;
+  width: 400px;
+  position: relative;
+  background: #ffc243;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.container{
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  max-height: 600px;
+}
+
+.example-card:not(:last-child){
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+.product{
+  border-bottom: 2px solid
+}
+
+.image-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-image{
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.product-image:not(:last-child){
+  margin-right: 10px;
+}
+
+.product-btn{
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+}
+
+.box-btn{
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
